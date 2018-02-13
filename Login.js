@@ -7,7 +7,8 @@ export default class Login extends Component{
     super()
     this.state={
       username:'',
-      password:''
+      password:'',
+      email: ''
     }
   }
 
@@ -16,6 +17,16 @@ export default class Login extends Component{
       method: "post",
       
     })
+  }
+
+  handleEmail = (e) =>{
+    this.setState({email: e.currentTarget.value})
+  }
+  handlePassword = (e) => {
+    this.setState({password: e.currentTarget.value})
+  }
+  handleUsername = (e) =>{
+    this.setState({username: e.currentTarget.value})
   }
 
 
@@ -29,16 +40,22 @@ export default class Login extends Component{
           Use the form below to login
         </Text>
         <TextInput
+        onChange={this.handleEmail}
+        value={this.state.email}
         placeholder="Email"
         style={styles.form}
         />
 
         <TextInput
+        onChange={this.handleUsername}
+        value={this.state.username}
         placeholder="Username"
         style={styles.form}
         />
 
         <TextInput 
+        onChange={this.handlePassword}
+        value={this.state.password}
         style={styles.form}
         placeholder="password"
           />
