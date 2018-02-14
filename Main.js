@@ -22,11 +22,4 @@ export default class Main extends Component {
       console.log(this.state)
     })
   }
-
-  render(){
-    return( 
-      <LandingPage allHunts={this.state.hunts}/>
-      <HuntDetails allHunts={this.state.hunts}/>
-      )
-  }
 }

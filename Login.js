@@ -24,13 +24,12 @@ export default class Login extends Component{
         email: this.state.email
       })
       .end((err,res)=>{
-        console.log(err, res)
+        //console.log(err, res)
       })
+      this.props.getUsername(this.state.username)
     };
 
-    Register =(e) => {
-      this.props.getRegister(this.state.register)
-    }
+
 
   render(){
     return(
@@ -76,7 +75,6 @@ export default class Login extends Component{
         onPress={ (register)=>{
             this.setState({register: true}); 
             this.props.getRegister(true);
-            setTimeout(()=>console.log(this.state), 1000);
           } 
         }
         />
