@@ -3,21 +3,20 @@ import { View, Text, Button, TextInput, StyleSheet, Fetch } from 'react-native';
 import request from 'superagent'
 
 
-export default class Login extends Component{
+export default class Register extends Component{
   constructor(){
     super()
     this.state={
       username:'',
       password:'',
-      email: '',
-      register: false
+      email: ''
     }
   }
 
   handlePress = () =>{
 
     request
-      .post('http://localhost:9292/users/login')
+      .post('http://localhost:9292/users/register')
       .send ({
         username:this.state.username, 
         password: this.state.password,
@@ -28,9 +27,7 @@ export default class Login extends Component{
       })
     };
 
-    Register =(e) => {
-      this.props.getRegister(this.state.register)
-    }
+
 
   render(){
     return(
@@ -40,11 +37,22 @@ export default class Login extends Component{
           justifyContent: 'center',
           margin: 30
         }}>
-          Use the form below to Login
+          Use the form below to Register
         </Text>
 
         <Text>
-        Username:
+          Email:
+        </Text>
+
+        <TextInput
+        onChangeText={(email)=> this.setState({email})}
+        value={this.state.email}
+        placeholder="Email"
+        style={styles.form}
+        />
+
+        <Text>
+          Username:
         </Text>
 
         <TextInput
@@ -55,7 +63,7 @@ export default class Login extends Component{
         />
 
         <Text>
-        Password:
+          Password:
         </Text>
 
         <TextInput
@@ -67,18 +75,9 @@ export default class Login extends Component{
           />
 
         <Button 
-        title="Login"
+        title="Register"
         style={styles.button}
         onPress={this.handlePress} 
-        />
-        <Button 
-        title="Not a user?  Register here"
-        onPress={ (register)=>{
-            this.setState({register: true}); 
-            this.props.getRegister(true);
-            setTimeout(()=>console.log(this.state), 1000);
-          } 
-        }
         />
       </View>
       )
@@ -91,7 +90,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#C0C0C0'
   },
   form: {
     borderWidth: 1,
@@ -100,7 +98,7 @@ const styles = StyleSheet.create({
     height:30,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5
+    margin: 10
   },
   button: {
     borderWidth: 1,

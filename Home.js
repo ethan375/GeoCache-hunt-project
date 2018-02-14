@@ -33,12 +33,8 @@ export default class Home extends Component{
           <MapView
           style={styles.map}
           region={this.state}
-          >
-           <Marker draggable
-          coordinate={this.state.x}
-          onDragEnd={(e) => this.setState({ x: e.nativeEvent.coordinate })}
           />
-          </MapView>
+
           <Text>
             Latitude:
           </Text>
